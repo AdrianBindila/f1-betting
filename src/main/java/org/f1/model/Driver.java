@@ -9,15 +9,12 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class User {
+public class Driver {
     @Id
     @GeneratedValue
     private Long id;
     @Column(unique = true, nullable = false)
-    private String username;
-    @Column(nullable = false)
-    private String password;
+    private String driverName;
     @OneToMany
-    private List<Bet> bets;
-    private int score;
+    private List<SessionResult> results;
 }

@@ -6,18 +6,18 @@ import lombok.Setter;
 
 import java.util.List;
 
+//FP1,2,3; Q1,2,3; and the race itself
+
 @Entity
 @Getter
 @Setter
-public class User {
+public class Session {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(unique = true, nullable = false)
-    private String username;
-    @Column(nullable = false)
-    private String password;
+    private SessionType type;
+    @ManyToOne
+    private Race race;
     @OneToMany
-    private List<Bet> bets;
-    private int score;
+    private List<SessionResult> results;
 }
