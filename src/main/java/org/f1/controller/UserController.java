@@ -15,16 +15,19 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private final ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper;
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UserController(ModelMapper modelMapper, UserService userService) {
+        this.modelMapper = modelMapper;
         this.userService = userService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
+    @GetMapping("/all")
+    public ResponseEntity<List<UserDTO>> getUsers() {
+        List<User> users = userService.getAllUsers();
+        List<UserDTO> userDTOS = users.stream().map(user -> modelMapper.map(user,UserDTO.class)).toList();
+        return ResponseEntity.ok(userDTOS);
     }
 
     @GetMapping("/{username}")

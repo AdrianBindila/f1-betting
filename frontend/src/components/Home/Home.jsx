@@ -1,8 +1,10 @@
 import {useContext} from "react";
-import {UserContext} from "../App";
+import {UserContext} from "../../App";
 import {Button, Col, Dropdown, ListGroup, Row} from "react-bootstrap";
-import "../styles/Home.css"
+import "../../styles/Home.css"
 import {useNavigate} from "react-router-dom";
+import {Scoreboard} from "./Scoreboard";
+import {Statboard} from "./Statboard";
 
 export const Home = () => {
     const {user, setUser} = useContext(UserContext);
@@ -34,28 +36,10 @@ export const Home = () => {
             </Row>
             <Row>
                 <Col>
-                    <div className="betting-list">
-                        <h2>Betting scoreboard</h2>
-                        <ListGroup>
-                            {/*on click go to the user profile info or
-                            show a modal with some user stats*/}
-                            <ListGroup.Item action>Denis 176 (+10)</ListGroup.Item>
-                            <ListGroup.Item action>Cioba 156 (+15)</ListGroup.Item>
-                            <ListGroup.Item action>Cătă 132 (+5)</ListGroup.Item>
-                            <ListGroup.Item action>Vlad 120 (+20)</ListGroup.Item>
-                            <ListGroup.Item action>Adi 116 (+12)</ListGroup.Item>
-                        </ListGroup>
-                    </div>
+                    <Scoreboard/>
                 </Col>
                 <Col>
-                    <div className="betting-stats">
-                        <h2>Next race:</h2>
-                        <h3>Bahrain GP 2023 (image)</h3>
-                        <h2>Previous P10 winner:</h2>
-                        <h3>Lance Stroll (Denis) (image)</h3>
-                        <h2>Previous DNF winner:</h2>
-                        <h3>Alex Albon (Adi) (image)</h3>
-                    </div>
+                    <Statboard/>
                 </Col>
             </Row>
         </>
